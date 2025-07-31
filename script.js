@@ -39,10 +39,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         top: targetPosition,
         behavior: 'smooth'
       });
-    }
+      }
+    });
   });
-});
-
+  
 // Reveal sections on scroll with improved performance
 const observerOptions = {
   threshold: 0.2,
@@ -62,8 +62,8 @@ document.querySelectorAll('section').forEach(section => {
 });
 
 // Enhanced theme toggle with smooth transitions
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.getElementById('theme-toggle');
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('theme-toggle');
   const icon = toggleBtn.querySelector('i');
   
   // Check for saved theme preference or detect system preference
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.className = defaultTheme;
   updateThemeIcon(icon, defaultTheme);
   
-  toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', () => {
     const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     

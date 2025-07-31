@@ -1,7 +1,7 @@
 /* Reset and Base Styles */
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
   box-sizing: border-box;
 }
 
@@ -156,7 +156,7 @@ body {
 }
 
 /* Header and Navigation */
-header {
+  header {
   position: fixed;
   top: 0;
   left: 0;
@@ -174,9 +174,9 @@ main {
 }
 
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -189,11 +189,11 @@ nav {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.nav-links {
+  }
+  
+  .nav-links {
   display: flex;
-  list-style: none;
+    list-style: none;
   gap: 2rem;
   align-items: center;
 }
@@ -779,16 +779,16 @@ nav {
 }
 
 .project-links {
-  display: flex;
-  gap: 1rem;
-}
-
+    display: flex;
+    gap: 1rem;
+  }
+  
 .project-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   color: var(--primary-color);
-  text-decoration: none;
+    text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -895,9 +895,9 @@ nav {
   position: absolute;
   left: 0;
   color: var(--primary-color);
-  font-weight: bold;
-}
-
+    font-weight: bold;
+  }
+  
 /* Contact Section */
 .contact-content {
   max-width: 600px;
@@ -917,7 +917,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 2rem;
+    padding: 2rem;
   background: var(--card-bg);
   border-radius: 1rem;
   box-shadow: var(--shadow-md);
@@ -938,9 +938,9 @@ nav {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: white;
-}
-
+    color: white;
+  }
+  
 .contact-details h3 {
   font-size: 1.25rem;
   font-weight: 600;
@@ -1108,5 +1108,5 @@ footer {
   .stats {
     grid-template-columns: 1fr;
   }
-}
+  }
   
