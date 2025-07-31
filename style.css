@@ -808,12 +808,11 @@ nav {
 .timeline::before {
   content: '';
   position: absolute;
-  left: 50%;
+  left: 0;
   top: 0;
   bottom: 0;
   width: 2px;
   background: var(--gradient-primary);
-  transform: translateX(-50%);
   z-index: 1;
 }
 
@@ -824,7 +823,7 @@ nav {
 
 .timeline-marker {
   position: absolute;
-  left: 50%;
+  left: 0;
   top: 0;
   width: 20px;
   height: 20px;
@@ -839,7 +838,7 @@ nav {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: var(--shadow-md);
-  margin-left: 3rem;
+  margin-left: 2rem;
   position: relative;
   border: 1px solid var(--border-color);
 }
@@ -853,7 +852,7 @@ nav {
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-right: 10px solid var(--bg-secondary);
+  border-right: 10px solid var(--card-bg);
 }
 
 .timeline-content h3 {
@@ -1071,15 +1070,15 @@ footer {
   }
   
   .timeline::before {
-    left: 20px;
+    left: 0;
   }
   
   .timeline-marker {
-    left: 20px;
+    left: 0;
   }
   
   .timeline-content {
-    margin-left: 0;
+    margin-left: 1rem;
     margin-top: 1rem;
   }
   
