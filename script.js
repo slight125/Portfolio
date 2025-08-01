@@ -314,7 +314,6 @@ document.head.appendChild(style);
 // Tech Background Enhancements
 function enhanceTechBackground() {
   const techIcons = document.querySelectorAll('.tech-icon');
-  const techBuses = document.querySelectorAll('.tech-bus');
   const dataStreams = document.querySelectorAll('.data-stream');
   
   // Interactive tech icons
@@ -329,41 +328,6 @@ function enhanceTechBackground() {
       icon.style.filter = '';
     });
   });
-  
-  // Dynamic bus spawning
-  function spawnTechBus() {
-    const techBackground = document.querySelector('.tech-background');
-    const busTexts = ['DEV', 'CODE', 'TECH', 'WEB', 'APP', 'AI'];
-    const randomText = busTexts[Math.floor(Math.random() * busTexts.length)];
-    const randomDelay = Math.random() * 10;
-    const randomSpeed = 20 + Math.random() * 15;
-    
-    const newBus = document.createElement('div');
-    newBus.className = 'tech-bus';
-    newBus.style.setProperty('--delay', `${randomDelay}s`);
-    newBus.style.setProperty('--speed', `${randomSpeed}s`);
-    
-    newBus.innerHTML = `
-      <div class="bus-body">
-        <div class="bus-window"></div>
-        <div class="bus-window"></div>
-        <div class="bus-window"></div>
-      </div>
-      <div class="bus-text">${randomText}</div>
-    `;
-    
-    techBackground.appendChild(newBus);
-    
-    // Remove bus after animation
-    setTimeout(() => {
-      if (newBus.parentNode) {
-        newBus.parentNode.removeChild(newBus);
-      }
-    }, (randomSpeed + randomDelay) * 1000);
-  }
-  
-  // Spawn buses periodically
-  setInterval(spawnTechBus, 8000);
   
   // Parallax effect for tech elements
   window.addEventListener('scroll', () => {
@@ -384,6 +348,32 @@ function enhanceTechBackground() {
       bit.style.animationDelay = `${index * 0.2}s`;
     });
   });
+  
+  // Responsive tech background adjustments
+  function adjustTechElements() {
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    techIcons.forEach(icon => {
+      if (isSmallMobile) {
+        icon.style.width = '30px';
+        icon.style.height = '30px';
+        icon.style.fontSize = '14px';
+      } else if (isMobile) {
+        icon.style.width = '40px';
+        icon.style.height = '40px';
+        icon.style.fontSize = '18px';
+      } else {
+        icon.style.width = '50px';
+        icon.style.height = '50px';
+        icon.style.fontSize = '24px';
+      }
+    });
+  }
+  
+  // Adjust on load and resize
+  adjustTechElements();
+  window.addEventListener('resize', adjustTechElements);
 }
 
 // Initialize tech background enhancements
