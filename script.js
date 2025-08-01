@@ -365,6 +365,73 @@ function enhanceTechBackground() {
 // Initialize tech background enhancements
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
+  initMobileMenu();
   enhanceTechBackground();
 });
+
+// Mobile Menu Functionality
+function initMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const body = document.body;
+
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+    const isOpen = mobileMenuOverlay.classList.contains('active');
+    
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
+  // Open mobile menu
+  function openMobileMenu() {
+    hamburger.classList.add('active');
+    mobileMenuOverlay.classList.add('active');
+    body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  // Close mobile menu
+  function closeMobileMenu() {
+    hamburger.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    body.style.overflow = ''; // Restore scrolling
+  }
+
+  // Event listeners
+  hamburger.addEventListener('click', toggleMobileMenu);
+  mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+  // Close menu when clicking overlay
+  mobileMenuOverlay.addEventListener('click', (e) => {
+    if (e.target === mobileMenuOverlay) {
+      closeMobileMenu();
+    }
+  });
+
+  // Close menu when clicking nav links
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && mobileMenuOverlay.classList.contains('active')) {
+      closeMobileMenu();
+    }
+  });
+}
   
