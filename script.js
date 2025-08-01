@@ -61,50 +61,7 @@ document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
 
-// Enhanced theme toggle with smooth transitions
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('theme-toggle');
-  const icon = toggleBtn.querySelector('i');
-  
-  // Check for saved theme preference or detect system preference
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const defaultTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-  
-  document.body.className = defaultTheme;
-  updateThemeIcon(icon, defaultTheme);
-  
-    toggleBtn.addEventListener('click', () => {
-    const currentTheme = document.body.classList.contains('dark') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    // Add transition class for smooth theme change
-    document.body.style.transition = 'all 0.3s ease';
-    
-    // Toggle theme
-    document.body.classList.remove('dark', 'light');
-    document.body.classList.add(newTheme);
-    
-    // Update icon
-    updateThemeIcon(icon, newTheme);
-    
-    // Save preference
-    localStorage.setItem('theme', newTheme);
-    
-    // Remove transition class after animation
-    setTimeout(() => {
-      document.body.style.transition = '';
-    }, 300);
-  });
-});
 
-function updateThemeIcon(icon, theme) {
-  if (theme === 'dark') {
-    icon.className = 'fas fa-sun';
-  } else {
-    icon.className = 'fas fa-moon';
-  }
-}
 
 // Advanced typing animation with type and delete effect
 function typeWriter(element, text, speed = 100) {
@@ -192,27 +149,56 @@ if (hamburger && navLinks) {
   });
 }
 
-// Add active class to nav links based on scroll position
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
+// Enhanced Navigation with Mobile Support
+function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-links a');
-  
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (window.pageYOffset >= sectionTop - 200) {
-      current = section.getAttribute('id');
-    }
-  });
-  
+  const sections = document.querySelectorAll('section[id]');
+
+  // Smooth scrolling for navigation links
   navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      if (targetSection) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = targetSection.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
-});
+
+  // Update active navigation link based on scroll position
+  function updateActiveNav() {
+    const scrollPos = window.scrollY + 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Add active class to current section link
+        const currentLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+        currentLink?.classList.add('active');
+      }
+    });
+  }
+
+  // Update active state on scroll
+  window.addEventListener('scroll', updateActiveNav);
+  
+  // Initial active state
+  updateActiveNav();
+}
 
 // Initialize animations when page loads
 window.addEventListener('load', () => {
@@ -378,6 +364,7 @@ function enhanceTechBackground() {
 
 // Initialize tech background enhancements
 document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
   enhanceTechBackground();
 });
   
