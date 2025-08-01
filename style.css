@@ -5,6 +5,245 @@
   box-sizing: border-box;
 }
 
+/* Tech Background Elements */
+.tech-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Animated Tech Buses */
+.tech-bus {
+  position: absolute;
+  bottom: -100px;
+  width: 120px;
+  height: 60px;
+  animation: bus-drive var(--speed, 20s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+}
+
+.bus-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  border-radius: 30px 30px 10px 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 15px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.bus-window {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  animation: bus-window-glow 2s ease-in-out infinite alternate;
+}
+
+.bus-text {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f59e0b;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Floating Tech Icons */
+.tech-icon {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  animation: tech-float 6s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.7;
+  filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.5));
+  transition: all 0.3s ease;
+}
+
+.tech-icon:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.8));
+}
+
+/* Data Streams */
+.data-stream {
+  position: absolute;
+  left: var(--x, 50%);
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: data-flow 8s linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.data-bit {
+  width: 8px;
+  height: 8px;
+  background: #f59e0b;
+  border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+/* Glow Orbs */
+.glow-orb {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  border-radius: 50%;
+  animation: orb-pulse 4s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.6;
+  filter: blur(1px);
+}
+
+/* Circuit Lines */
+.circuit-line {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, #6366f1, transparent);
+  animation: circuit-pulse 3s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0.4;
+}
+
+.circuit-line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #6366f1, transparent);
+}
+
+/* Tech Background Animations */
+@keyframes bus-drive {
+  0% {
+    transform: translateX(-150px) translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(calc(100vw + 150px)) translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes bus-window-glow {
+  0% {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes tech-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px));
+    opacity: 0;
+  }
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1.2);
+  }
+}
+
+/* Dark theme adjustments for tech elements */
+body.dark .tech-bus {
+  filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.5));
+}
+
+body.dark .tech-icon {
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6));
+}
+
+body.dark .data-bit {
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+}
+
 :root {
   /* Light Theme Colors */
   --primary-color: #6366f1;

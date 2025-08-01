@@ -311,3 +311,83 @@ style.textContent = `
 `;
 document.head.appendChild(style);
   
+// Tech Background Enhancements
+function enhanceTechBackground() {
+  const techIcons = document.querySelectorAll('.tech-icon');
+  const techBuses = document.querySelectorAll('.tech-bus');
+  const dataStreams = document.querySelectorAll('.data-stream');
+  
+  // Interactive tech icons
+  techIcons.forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+      icon.style.transform = 'scale(1.3) rotate(10deg)';
+      icon.style.filter = 'drop-shadow(0 0 25px rgba(99, 102, 241, 0.9))';
+    });
+    
+    icon.addEventListener('mouseleave', () => {
+      icon.style.transform = '';
+      icon.style.filter = '';
+    });
+  });
+  
+  // Dynamic bus spawning
+  function spawnTechBus() {
+    const techBackground = document.querySelector('.tech-background');
+    const busTexts = ['DEV', 'CODE', 'TECH', 'WEB', 'APP', 'AI'];
+    const randomText = busTexts[Math.floor(Math.random() * busTexts.length)];
+    const randomDelay = Math.random() * 10;
+    const randomSpeed = 20 + Math.random() * 15;
+    
+    const newBus = document.createElement('div');
+    newBus.className = 'tech-bus';
+    newBus.style.setProperty('--delay', `${randomDelay}s`);
+    newBus.style.setProperty('--speed', `${randomSpeed}s`);
+    
+    newBus.innerHTML = `
+      <div class="bus-body">
+        <div class="bus-window"></div>
+        <div class="bus-window"></div>
+        <div class="bus-window"></div>
+      </div>
+      <div class="bus-text">${randomText}</div>
+    `;
+    
+    techBackground.appendChild(newBus);
+    
+    // Remove bus after animation
+    setTimeout(() => {
+      if (newBus.parentNode) {
+        newBus.parentNode.removeChild(newBus);
+      }
+    }, (randomSpeed + randomDelay) * 1000);
+  }
+  
+  // Spawn buses periodically
+  setInterval(spawnTechBus, 8000);
+  
+  // Parallax effect for tech elements
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.tech-icon, .glow-orb');
+    
+    parallaxElements.forEach(element => {
+      const speed = 0.5;
+      const yPos = -(scrolled * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+  });
+  
+  // Data stream enhancement
+  dataStreams.forEach(stream => {
+    const bits = stream.querySelectorAll('.data-bit');
+    bits.forEach((bit, index) => {
+      bit.style.animationDelay = `${index * 0.2}s`;
+    });
+  });
+}
+
+// Initialize tech background enhancements
+document.addEventListener('DOMContentLoaded', () => {
+  enhanceTechBackground();
+});
+  
