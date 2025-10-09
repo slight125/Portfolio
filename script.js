@@ -99,6 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalText = nameElement.textContent;
     nameElement.textContent = '';
     
+    // Ensure the container has enough width to display the full text
+    const heroName = nameElement.closest('.hero-name');
+    if (heroName) {
+      // Temporarily set the text to measure width
+      nameElement.textContent = originalText;
+      const textWidth = nameElement.scrollWidth;
+      nameElement.textContent = '';
+      
+      // Set minimum width to prevent wrapping
+      heroName.style.minWidth = textWidth + 'px';
+    }
+    
     setTimeout(() => {
       typeWriter(nameElement, originalText, 150);
     }, 1000);

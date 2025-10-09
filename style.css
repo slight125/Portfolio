@@ -421,6 +421,8 @@ nav {
 .typing-container {
   display: inline-block;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .typing-text {
@@ -428,6 +430,8 @@ nav {
   white-space: nowrap;
   overflow: hidden;
   animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  max-width: 100%;
 }
 
 @keyframes typing {
@@ -470,11 +474,15 @@ nav {
   margin-bottom: 1rem;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   letter-spacing: -0.02em;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
 }
 
 .hero-name .typing-text {
   color: white;
   font-weight: 600;
+  min-width: max-content;
 }
 
 .hero-subtitle {
@@ -1255,6 +1263,8 @@ footer {
   
   .hero-name {
     font-size: 2.2rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .hero-subtitle {
@@ -1537,6 +1547,8 @@ footer {
   
   .hero-name {
     font-size: 1.8rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .hero-subtitle {
@@ -1608,6 +1620,8 @@ footer {
   
   .hero-name {
     font-size: 1.6rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .profile-container {
@@ -1653,6 +1667,8 @@ footer {
   
   .hero-name {
     font-size: 1.8rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .profile-container {
@@ -2062,6 +2078,20 @@ footer {
   
   .highlight-item span {
     font-size: 0.85rem;
+  }
+}
+
+/* Extra small screens - prevent text overflow */
+@media (max-width: 320px) {
+  .hero-name {
+    font-size: 1.4rem !important;
+    transform: scale(0.9);
+    transform-origin: left center;
+  }
+  
+  .typing-container {
+    max-width: 100vw;
+    overflow: hidden;
   }
 }
   
