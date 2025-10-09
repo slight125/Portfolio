@@ -938,6 +938,7 @@ nav {
 .project-links {
     display: flex;
     gap: 1rem;
+    justify-content: center;
   }
   
 .project-link {
