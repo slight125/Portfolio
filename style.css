@@ -565,13 +565,13 @@ nav {
 
 .profile-container {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
 }
 
 .profile-image {
-  width: 420px;
-  height: 420px;
+  width: 500px;
+  height: 500px;
   background: var(--gradient-card);
   border-radius: 50%;
   display: flex;
